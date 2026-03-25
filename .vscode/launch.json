@@ -1,0 +1,33 @@
+{
+
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "TesteOO",
+            "request": "launch",
+            "mainClass": "TesteOO",
+            "projectName": "projetinhos_aa9fc805"
+        },
+        {
+            "type": "java",
+            "name": "TelaCadastro",
+            "request": "launch",
+            "mainClass": "TelaCadastro",
+            "projectName": "projetinhos_aa9fc805"
+        },
+        {
+            "type": "java",
+            "name": "TesteBanco",
+            "request": "launch",
+            "mainClass": "TesteBanco",
+            "projectName": "projetinhos_aa9fc805"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        }
+    ]
+}

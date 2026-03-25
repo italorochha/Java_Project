@@ -1,0 +1,12 @@
+{
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar",
+            "c:\\Users\\Italo Rocha\\Downloads\\sqlite-jdbc-3.42.0.0-javadoc.jar"
+        ],
+        "exclude": [
+            "lib/sqlite-jdbc-3.42.0.0-javadoc.jar"
+        ]
+    },
+    "java.debug.settings.onBuildFailureProceed": true
+}
