@@ -1,9 +1,15 @@
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import javax.swing.*;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class TelaCadastro {
     public static void main(String[] args) {
@@ -34,6 +40,10 @@ public class TelaCadastro {
 
         JButton botaoAdicionar = new JButton("Salvar no Banco");
         botaoAdicionar.setBounds(20, 300, 150, 40);
+        JButton botaoListar = new JButton("Listar no Terminal");
+        botaoListar.setBounds(180, 300, 150, 40);
+        JButton botaoDeletar = new JButton("Deletar VIP");
+        botaoDeletar.setBounds(340, 300, 130, 40);
 
         botaoAdicionar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -63,7 +73,7 @@ public class TelaCadastro {
                 ConvidadoDAO dao = new ConvidadoDAO();
                 dao.salvarNoBanco(vip, enderecoFormatado);
 
-                var mensagemFinal = "✅ Salvo no SQLite com Sucesso!\n\n" + vip.gerarResumo() + "\nEndereço: " + enderecoFormatado;
+                var mensagemFinal = " Salvo no SQLite com Sucesso!\n\n" + vip.gerarResumo() + "\nEndereço: " + enderecoFormatado;
                 JOptionPane.showMessageDialog(null, mensagemFinal);
 
                 campoNome.setText("");
@@ -73,11 +83,32 @@ public class TelaCadastro {
             }
         });
 
+        botaoListar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ConvidadoDAO dao = new ConvidadoDAO();
+                dao.listarTodos();
+            }
+        });
+        botaoDeletar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String idDigitado = JOptionPane.showInputDialog(null, "Digite o ID do VIP que deseja apagar:");
+                if (idDigitado != null && !idDigitado.isEmpty()) {
+                    int idParaApagar = Integer.parseInt(idDigitado);
+                    ConvidadoDAO dao = new ConvidadoDAO();
+                    dao.deletar(idParaApagar);
+
+                    JOptionPane.showMessageDialog(null, "Comando de exclusão executado para o ID: " + idParaApagar + ".\nOlhe o terminal para confirmar!");
+                }
+            }
+        });
+
         janela.add(rotuloNome); janela.add(campoNome);
         janela.add(rotuloIdade); janela.add(campoIdade);
         janela.add(rotuloCEP); janela.add(campoCEP);
         janela.add(TipoIngresso); janela.add(campoTipoIngresso);
         janela.add(botaoAdicionar);
+        janela.add(botaoListar);
+        janela.add(botaoDeletar);
         janela.setVisible(true);
     }
 }
